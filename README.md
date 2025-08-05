@@ -21,6 +21,11 @@ sub.connect("tcp://localhost:5556")
 sub.setsockopt_string(zmq.SUBSCRIBE, "")
 ^this is to constantly listen for 'timer is done' from the microservice
 
+There will have to be a background listener to receive the data from the connection listed above - following an architecture similar to this below
+while True:
+        message = sub.recv_string()
+        print(f"Notification: {message}\n> ")
+
 It supports:
 -Starting a timer in minutes 
 -Pausing, resuming, canceling
